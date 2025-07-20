@@ -6,7 +6,8 @@ import { TrainingPlan } from "@/types/training"
 import { getCurrentWeek } from "@/lib/utils"
 import stravaClient from "@/strava"
 import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { TabsWithParams, TabsListWithParams, TabsTriggerWithParams, TabsContentWithParams } from "@/components/TabsWithParams"
+import Link from "next/link"
 import trainingPlan from "@/training-plan.json"
 
 // Revalidate every 2 hours to cache Strava data
@@ -58,12 +59,15 @@ export default async function Home({ searchParams }: HomeProps) {
       <div className="border-b bg-card/50 backdrop-blur">
         <div className="container mx-auto px-4 py-6">
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold tracking-tight">
-              Ironman Training Tracker
-            </h1>
-            <p className="text-muted-foreground">
-              49-week journey to race day
-            </p>
+              <h1 className="text-xl font-bold">
+                Ironman Training Tracker
+              </h1>
+              <Link
+                href="/plan"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                View Full Plan →
+              </Link>
           </div>
         </div>
       </div>
@@ -85,14 +89,14 @@ export default async function Home({ searchParams }: HomeProps) {
           />
 
           {/* Main Dashboard - Mobile First Layout */}
-          <Tabs defaultValue="overview" className="w-full lg:hidden">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="log">Data</TabsTrigger>
-              <TabsTrigger value="phases">Phases</TabsTrigger>
-            </TabsList>
+          <TabsWithParams defaultValue="overview" className="w-full lg:hidden">
+            <TabsListWithParams className="grid w-full grid-cols-3">
+              <TabsTriggerWithParams value="overview">Overview</TabsTriggerWithParams>
+              <TabsTriggerWithParams value="log">Data</TabsTriggerWithParams>
+              <TabsTriggerWithParams value="phases">Phases</TabsTriggerWithParams>
+            </TabsListWithParams>
             
-            <TabsContent value="overview" className="space-y-6 mt-6">
+            <TabsContentWithParams value="overview" className="space-y-6 mt-6">
               <WeekDisplay
                 week={currentWeekData}
                 phases={plan.phases}
@@ -100,24 +104,24 @@ export default async function Home({ searchParams }: HomeProps) {
                 stravaData={stravaData}
                 stravaError={stravaError}
               />
-            </TabsContent>
+            </TabsContentWithParams>
             
-            <TabsContent value="log" className="space-y-6 mt-6">
+            <TabsContentWithParams value="log" className="space-y-6 mt-6">
               <ProgressTracker
                 week={currentWeekData}
                 startDate={plan.startDate}
                 stravaData={stravaData}
                 stravaError={stravaError}
               />
-            </TabsContent>
+            </TabsContentWithParams>
             
-            <TabsContent value="phases" className="space-y-6 mt-6">
+            <TabsContentWithParams value="phases" className="space-y-6 mt-6">
               <PhaseOverview
                 phases={plan.phases}
                 currentWeek={validWeek}
               />
-            </TabsContent>
-          </Tabs>
+            </TabsContentWithParams>
+          </TabsWithParams>
 
           {/* Desktop Layout - Hidden on Mobile */}
           <div className="hidden lg:block">

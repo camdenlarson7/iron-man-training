@@ -128,7 +128,7 @@ export function ProgressTracker({ week, stravaData, stravaError }: ProgressTrack
       </div>
 
       {/* Strava Link */}
-      <div className="text-center">
+      { /* <div className="text-center">
         <Button
           variant="outline"
           size="sm"
@@ -143,8 +143,8 @@ export function ProgressTracker({ week, stravaData, stravaError }: ProgressTrack
             <ExternalLink className="h-4 w-4" />
             View on Strava
           </a>
-        </Button>
-      </div>
+        </Button> 
+      </div>*/}
     </Card>
   )
 }

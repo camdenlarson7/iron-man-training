@@ -185,17 +185,6 @@ export function WeekNavigator({
             </div>
           </DrawerContent>
         </Drawer>
-
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => handleJumpToWeek(49)}
-          disabled={currentWeek === 49}
-          className="flex-1"
-        >
-          <Target className="h-3 w-3 mr-1" />
-          Race Week
-        </Button>
       </div>
 
       {/* Week Status Indicator */}

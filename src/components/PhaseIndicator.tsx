@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { TrainingPhase, PhaseInfo } from "@/types/training"
 import { getCurrentPhase } from "@/lib/utils"
+import Link from "next/link"
 import { 
   Activity, 
   Zap, 
@@ -205,7 +206,7 @@ export function PhaseOverview({ phases, currentWeek }: { phases: TrainingPhase[]
                 <div className="mt-2 ml-7 mr-2">
                   <div className="grid grid-cols-4 gap-2">
                     {phaseWeeks.map(weekNum => (
-                      <a
+                      <Link
                         key={weekNum}
                         href={`/?week=${weekNum}`}
                         className={`px-2 py-1 text-xs rounded text-center transition-colors hover:bg-primary/20 ${
@@ -217,7 +218,7 @@ export function PhaseOverview({ phases, currentWeek }: { phases: TrainingPhase[]
                         }`}
                       >
                         Week {weekNum}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
