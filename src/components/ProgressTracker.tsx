@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { TrainingWeek } from "@/types/training"
 import { formatDuration } from "@/lib/utils"
 import { Waves, Bike, FootprintsIcon, ExternalLink } from "lucide-react"
+import { CircularProgress } from "./CircularProgress"
 
 interface ProgressTrackerProps {
   week: TrainingWeek
@@ -61,42 +62,50 @@ export function ProgressTracker({ week, stravaData, stravaError }: ProgressTrack
         )}
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-4">
         {disciplines.map((discipline) => {
           const Icon = discipline.icon
           const value = values[discipline.key]
           const planned = discipline.planned
-          const isOverPlanned = value > planned
+          const percentage = planned > 0 ? (value / planned) * 100 : 0
+          
+          const getColorClass = (color: string) => {
+            const colors = {
+              blue: 'text-blue-600',
+              green: 'text-green-600',
+              orange: 'text-orange-600'
+            }
+            return colors[color as keyof typeof colors]
+          }
           
           return (
-            <div key={discipline.key} className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon className="h-4 w-4" />
-                  <span className="font-medium">{discipline.name}</span>
+            <div key={discipline.key} className="flex flex-col items-center space-y-3">
+              <CircularProgress
+                percentage={percentage}
+                size={100}
+                strokeWidth={8}
+                color={getColorClass(discipline.color)}
+              >
+                <div className="text-center">
+                  <Icon className="h-5 w-5 mx-auto mb-1" />
+                  <div className="text-xs font-medium">
+                    {percentage > 999 ? '999+' : Math.round(percentage)}%
+                  </div>
                 </div>
-                <span className="text-xs text-muted-foreground">
-                  Planned: {formatDuration(planned)}
-                </span>
-              </div>
+              </CircularProgress>
               
-              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                <span className="text-sm text-muted-foreground">Completed:</span>
-                <span className="text-lg font-bold">
-                  {formatDuration(value)}
-                </span>
+              <div className="text-center space-y-1">
+                <div className="font-medium text-sm">{discipline.name}</div>
+                <div className="text-xs text-muted-foreground">
+                  {formatDuration(value)} / {formatDuration(planned)}
+                </div>
+                {planned > 0 && value !== planned && (
+                  <div className={`text-xs ${value > planned ? 'text-orange-600' : 'text-green-600'}`}>
+                    {value > planned ? '+' : ''}
+                    {formatDuration(Math.abs(value - planned))} vs planned
+                  </div>
+                )}
               </div>
-              
-              {isOverPlanned && (
-                <p className="text-xs text-orange-600">
-                  +{formatDuration(value - planned)} over planned
-                </p>
-              )}
-              {value > 0 && !isOverPlanned && (
-                <p className="text-xs text-green-600">
-                  {formatDuration(planned - value)} remaining
-                </p>
-              )}
             </div>
           )
         })}

@@ -8,6 +8,7 @@ import {
   getCurrentPhase
 } from "@/lib/utils"
 import { Waves, Bike, FootprintsIcon } from "lucide-react"
+import { CircularProgress } from "./CircularProgress"
 
 interface WeekDisplayProps {
   week: TrainingWeek
@@ -53,16 +54,16 @@ export function WeekDisplay({ week, phases, startDate, stravaData, stravaError }
 
   const getProgressBarColor = (discipline: string) => {
     const colors = {
-      blue: 'bg-blue-600',
-      green: 'bg-green-600',
-      orange: 'bg-orange-600'
+      blue: 'text-blue-600',
+      green: 'text-green-600',
+      orange: 'text-orange-600'
     }
     return colors[discipline as keyof typeof colors]
   }
 
   const getProgressPercentage = (completed: number, planned: number) => {
     if (planned === 0) return 0
-    return Math.min(100, (completed / planned) * 100)
+    return (completed / planned) * 100 // Allow over 100% for circular progress
   }
 
 
@@ -109,38 +110,38 @@ export function WeekDisplay({ week, phases, startDate, stravaData, stravaError }
         </p>
       </div>
 
-      {/* Discipline Breakdown */}
-      <div className="space-y-4">
+      {/* Discipline Breakdown - Circular Progress */}
+      <div className="grid grid-cols-3 gap-4">
         {disciplines.map((discipline) => {
           const percentage = getProgressPercentage(discipline.completed, discipline.planned)
           const Icon = discipline.icon
           
           return (
-            <div key={discipline.key} className="space-y-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon className="h-4 w-4" />
-                  <span className="font-medium">{discipline.name}</span>
+            <div key={discipline.key} className="flex flex-col items-center space-y-3">
+              <CircularProgress
+                percentage={percentage}
+                size={100}
+                strokeWidth={8}
+                color={getProgressBarColor(discipline.color)}
+              >
+                <div className="text-center">
+                  <Icon className="h-5 w-5 mx-auto mb-1" />
+                  <div className="text-xs font-medium">
+                    {percentage > 999 ? '999+' : Math.round(percentage)}%
+                  </div>
                 </div>
-                <span className="text-sm text-muted-foreground">
+              </CircularProgress>
+              
+              <div className="text-center space-y-1">
+                <div className="font-medium text-sm">{discipline.name}</div>
+                <div className="text-xs text-muted-foreground">
                   {formatDuration(discipline.completed)} / {formatDuration(discipline.planned)}
-                </span>
-              </div>
-              
-              <div className="w-full bg-muted rounded-full h-2">
-                <div 
-                  className={`h-2 rounded-full transition-all duration-300 ${getProgressBarColor(discipline.color)}`}
-                  style={{ width: `${percentage}%` }}
-                />
-              </div>
-              
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>{percentage.toFixed(1)}% complete</span>
-                {discipline.planned > 0 && (
-                  <span>
+                </div>
+                {discipline.planned > 0 && discipline.completed !== discipline.planned && (
+                  <div className={`text-xs ${discipline.completed > discipline.planned ? 'text-orange-600' : 'text-green-600'}`}>
                     {discipline.completed > discipline.planned ? '+' : ''}
-                    {formatDuration(discipline.completed - discipline.planned)} vs planned
-                  </span>
+                    {formatDuration(Math.abs(discipline.completed - discipline.planned))} vs planned
+                  </div>
                 )}
               </div>
             </div>
