@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card"
-import { TrainingWeek, TrainingPhase } from "@/types/training"
+import { TrainingWeek, TrainingPhase, StravaWeeklyStats } from "@/types/training"
 import { 
   formatDuration, 
   formatDateRange, 
@@ -14,7 +14,7 @@ interface WeekDisplayProps {
   week: TrainingWeek
   phases: TrainingPhase[]
   startDate: string
-  stravaData: { swim: number; bike: number; run: number; total: number } | null
+  stravaData: StravaWeeklyStats | null
   stravaError: string | null
 }
 

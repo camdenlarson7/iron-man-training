@@ -230,33 +230,11 @@ class StravaWorkoutQuery {
 		}
 	}
 
-	// Convenience method for getting simplified week progress
-	async getWeekProgress(weekNumber: number, trainingStartDate: string): Promise<{ swim: number; bike: number; run: number; total: number } | null> {
+	// Convenience method for getting week progress with activities
+	async getWeekProgress(weekNumber: number, trainingStartDate: string): Promise<StravaWeeklyStats | null> {
 		try {
-			// Quick check for future weeks to avoid unnecessary getWeeklyStats calls
-			const startDate = new Date(trainingStartDate + 'T00:00:00');
-			const weekStart = new Date(startDate);
-			weekStart.setDate(startDate.getDate() + (weekNumber - 1) * 7);
-			
-			// If week is in the future, return zeros immediately
-			const now = new Date();
-			if (weekStart > now) {
-				return {
-					swim: 0,
-					bike: 0,
-					run: 0,
-					total: 0
-				};
-			}
-
 			const weeklyStats = await this.getWeeklyStats(weekNumber, trainingStartDate)
-			
-			return {
-				swim: weeklyStats.swim,
-				bike: weeklyStats.bike,
-				run: weeklyStats.run,
-				total: weeklyStats.total
-			}
+			return weeklyStats
 		} catch (error) {
 			console.error('Failed to load Strava progress:', error)
 			return null

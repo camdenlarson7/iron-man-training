@@ -2,7 +2,7 @@ import { WeekDisplay } from "@/components/WeekDisplay"
 import { ProgressTracker } from "@/components/ProgressTracker"
 import { WeekNavigator } from "@/components/WeekNavigator"
 import { PhaseIndicator, PhaseOverview } from "@/components/PhaseIndicator"
-import { TrainingPlan } from "@/types/training"
+import { TrainingPlan, StravaWeeklyStats } from "@/types/training"
 import { getCurrentWeek } from "@/lib/utils"
 import stravaClient from "@/strava"
 import { Separator } from "@/components/ui/separator"
@@ -32,7 +32,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const currentWeekData = plan.weeks.find(week => week.week === validWeek)
   
   // Fetch Strava data on the server
-  let stravaData: { swim: number; bike: number; run: number; total: number } | null = null
+  let stravaData: StravaWeeklyStats | null = null
   let stravaError: string | null = null
   
   try {
