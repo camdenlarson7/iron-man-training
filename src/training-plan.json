@@ -1,0 +1,399 @@
+{
+  "startDate": "2025-07-14",
+  "totalWeeks": 49,
+  "phases": [
+    {
+      "name": "Base Building",
+      "description": "Build aerobic base, improve swim technique, maintain consistency",
+      "weeks": [
+        1,
+        12
+      ]
+    },
+    {
+      "name": "Build",
+      "description": "Increase volume and intensity, long aerobic efforts, introduce bricks",
+      "weeks": [
+        13,
+        24
+      ]
+    },
+    {
+      "name": "Peak Volume",
+      "description": "Hit peak long workouts. Big bricks, race nutrition, long aerobic efforts",
+      "weeks": [
+        25,
+        36
+      ]
+    },
+    {
+      "name": "Race Prep",
+      "description": "Race-pace intensity, race rehearsals, long bricks, heat adaptation",
+      "weeks": [
+        37,
+        46
+      ]
+    },
+    {
+      "name": "Taper",
+      "description": "Sharpen, reduce volume, keep intensity, stay fresh",
+      "weeks": [
+        47,
+        48
+      ]
+    },
+    {
+      "name": "Race Week",
+      "description": "Race day preparation and execution",
+      "weeks": [
+        49,
+        49
+      ]
+    }
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "swim": 1,
+      "bike": 2,
+      "run": 1.5,
+      "total": 4.5
+    },
+    {
+      "week": 2,
+      "swim": 1,
+      "bike": 2.5,
+      "run": 2,
+      "total": 5.5
+    },
+    {
+      "week": 3,
+      "swim": 1.5,
+      "bike": 3,
+      "run": 2,
+      "total": 6.5
+    },
+    {
+      "week": 4,
+      "swim": 1,
+      "bike": 2,
+      "run": 1.5,
+      "total": 4.5
+    },
+    {
+      "week": 5,
+      "swim": 1.5,
+      "bike": 3.5,
+      "run": 2.5,
+      "total": 7.5
+    },
+    {
+      "week": 6,
+      "swim": 1.5,
+      "bike": 4,
+      "run": 2.5,
+      "total": 8
+    },
+    {
+      "week": 7,
+      "swim": 2,
+      "bike": 4.5,
+      "run": 3,
+      "total": 9.5
+    },
+    {
+      "week": 8,
+      "swim": 1.5,
+      "bike": 3,
+      "run": 2,
+      "total": 6.5
+    },
+    {
+      "week": 9,
+      "swim": 2,
+      "bike": 5,
+      "run": 3,
+      "total": 10
+    },
+    {
+      "week": 10,
+      "swim": 2.5,
+      "bike": 5.5,
+      "run": 3.5,
+      "total": 11.5
+    },
+    {
+      "week": 11,
+      "swim": 2.5,
+      "bike": 6,
+      "run": 4,
+      "total": 12.5
+    },
+    {
+      "week": 12,
+      "swim": 2,
+      "bike": 4.5,
+      "run": 3,
+      "total": 9.5
+    },
+    {
+      "week": 13,
+      "swim": 2.5,
+      "bike": 4.5,
+      "run": 5.5,
+      "total": 12.5
+    },
+    {
+      "week": 14,
+      "swim": 2.5,
+      "bike": 5,
+      "run": 6,
+      "total": 13.5
+    },
+    {
+      "week": 15,
+      "swim": 3,
+      "bike": 5.5,
+      "run": 6.5,
+      "total": 15
+    },
+    {
+      "week": 16,
+      "swim": 2,
+      "bike": 4,
+      "run": 5,
+      "total": 11
+    },
+    {
+      "week": 17,
+      "swim": 3,
+      "bike": 6,
+      "run": 6.5,
+      "total": 15.5
+    },
+    {
+      "week": 18,
+      "swim": 3,
+      "bike": 6.5,
+      "run": 7,
+      "total": 16.5
+    },
+    {
+      "week": 19,
+      "swim": 3,
+      "bike": 7,
+      "run": 7.5,
+      "total": 17.5
+    },
+    {
+      "week": 20,
+      "swim": 2.5,
+      "bike": 5.5,
+      "run": 5.5,
+      "total": 13.5
+    },
+    {
+      "week": 21,
+      "swim": 3.5,
+      "bike": 7,
+      "run": 8,
+      "total": 18.5
+    },
+    {
+      "week": 22,
+      "swim": 3.5,
+      "bike": 7.5,
+      "run": 8,
+      "total": 19
+    },
+    {
+      "week": 23,
+      "swim": 3.5,
+      "bike": 8,
+      "run": 8.5,
+      "total": 20
+    },
+    {
+      "week": 24,
+      "swim": 3,
+      "bike": 6,
+      "run": 6,
+      "total": 15
+    },
+    {
+      "week": 25,
+      "swim": 3.5,
+      "bike": 8,
+      "run": 8.5,
+      "total": 20
+    },
+    {
+      "week": 26,
+      "swim": 3.5,
+      "bike": 8.5,
+      "run": 9,
+      "total": 21
+    },
+    {
+      "week": 27,
+      "swim": 3.5,
+      "bike": 9,
+      "run": 9,
+      "total": 21.5
+    },
+    {
+      "week": 28,
+      "swim": 3,
+      "bike": 7,
+      "run": 7,
+      "total": 17
+    },
+    {
+      "week": 29,
+      "swim": 4,
+      "bike": 9,
+      "run": 9.5,
+      "total": 22.5
+    },
+    {
+      "week": 30,
+      "swim": 4,
+      "bike": 9.5,
+      "run": 10,
+      "total": 23.5
+    },
+    {
+      "week": 31,
+      "swim": 4,
+      "bike": 10,
+      "run": 10,
+      "total": 24
+    },
+    {
+      "week": 32,
+      "swim": 3,
+      "bike": 7.5,
+      "run": 7.5,
+      "total": 18
+    },
+    {
+      "week": 33,
+      "swim": 4,
+      "bike": 10,
+      "run": 10.5,
+      "total": 24.5
+    },
+    {
+      "week": 34,
+      "swim": 4,
+      "bike": 10.5,
+      "run": 11,
+      "total": 25.5
+    },
+    {
+      "week": 35,
+      "swim": 4,
+      "bike": 11,
+      "run": 11,
+      "total": 26
+    },
+    {
+      "week": 36,
+      "swim": 3,
+      "bike": 8,
+      "run": 8,
+      "total": 19
+    },
+    {
+      "week": 37,
+      "swim": 3.5,
+      "bike": 8,
+      "run": 8,
+      "total": 19.5
+    },
+    {
+      "week": 38,
+      "swim": 3.5,
+      "bike": 9,
+      "run": 8.5,
+      "total": 21
+    },
+    {
+      "week": 39,
+      "swim": 3.5,
+      "bike": 10,
+      "run": 9,
+      "total": 22.5
+    },
+    {
+      "week": 40,
+      "swim": 3,
+      "bike": 8,
+      "run": 7,
+      "total": 18
+    },
+    {
+      "week": 41,
+      "swim": 4,
+      "bike": 10,
+      "run": 9.5,
+      "total": 23.5
+    },
+    {
+      "week": 42,
+      "swim": 4,
+      "bike": 11,
+      "run": 10,
+      "total": 25
+    },
+    {
+      "week": 43,
+      "swim": 4,
+      "bike": 11,
+      "run": 10.5,
+      "total": 25.5
+    },
+    {
+      "week": 44,
+      "swim": 3.5,
+      "bike": 9,
+      "run": 9,
+      "total": 21.5
+    },
+    {
+      "week": 45,
+      "swim": 4,
+      "bike": 11,
+      "run": 10.5,
+      "total": 25.5
+    },
+    {
+      "week": 46,
+      "swim": 3,
+      "bike": 7.5,
+      "run": 6.5,
+      "total": 17
+    },
+    {
+      "week": 47,
+      "swim": 2.5,
+      "bike": 6,
+      "run": 5.5,
+      "total": 14
+    },
+    {
+      "week": 48,
+      "swim": 2,
+      "bike": 4,
+      "run": 3.5,
+      "total": 9.5
+    },
+    {
+      "week": 49,
+      "swim": 1,
+      "bike": 2,
+      "run": 1,
+      "total": 4
+    }
+  ]
+}
