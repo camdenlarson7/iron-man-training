@@ -96,13 +96,7 @@ export function CircularProgress({
       <div className="absolute inset-0 flex items-center justify-center">
         {children}
       </div>
-      
-      {/* Superscript indicator for multiple rotations */}
-      {fullCircles > 0 && (
-        <div className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-          {fullCircles}
-        </div>
-      )}
+     
     </div>
   )
 }
