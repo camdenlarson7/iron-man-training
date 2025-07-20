@@ -9,8 +9,8 @@ import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import trainingPlan from "@/training-plan.json"
 
-// Revalidate every hour to cache Strava data
-export const revalidate = 3600
+// Revalidate every 2 hours to cache Strava data
+export const revalidate = 7200 
 
 interface HomeProps {
   searchParams: Promise<{ week?: string }>
