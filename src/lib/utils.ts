@@ -94,18 +94,14 @@ export function calculateWeekProgress(
 export function formatDuration(hours: number): string {
   if (hours === 0) return "0h"
   
-  const wholeHours = Math.floor(hours)
-  const minutes = Math.round((hours - wholeHours) * 60)
-  
-  if (wholeHours === 0) {
+  // For values less than 1 hour, show minutes
+  if (hours < 1) {
+    const minutes = Math.round(hours * 60)
     return `${minutes}m`
   }
   
-  if (minutes === 0) {
-    return `${wholeHours}h`
-  }
-  
-  return `${wholeHours}h ${minutes}m`
+  // For 1 hour or more, show hours with 1 decimal place
+  return `${hours.toFixed(1)}h`
 }
 
 export function formatDateRange(start: Date, end: Date): string {
