@@ -144,19 +144,20 @@ class StravaWorkoutQuery {
 			activities.forEach((activity) => {
 				const hours = activity.moving_time / 3600; // Convert seconds to hours
 				
-				switch (activity.type.toLowerCase()) {
-					case 'swim':
+				switch (activity.type) {
+					case 'Swim':
 						swimHours += hours;
 						break;
-					case 'ride':
-					case 'virtualride':
-					case 'bike':
+					case 'Ride':
 						bikeHours += hours;
 						break;
-					case 'run':
-					case 'virtualrun':
-					case 'tennis':
+					case 'Run':
 						runHours += hours;
+						break;
+					case 'Workout':
+						if (activity.sport_type == 'Tennis') {
+							runHours += hours
+						}
 						break;
 				}
 			});
