@@ -73,7 +73,7 @@ export interface RunWorkoutDay {
 export interface StravaActivity {
   id: number;
   name: string;
-  type: 'Ride' | 'Swim' | 'Run' | 'Walk' | 'Workout';
+  type: 'Ride' | 'Swim' | 'Run' | 'Walk' | 'Workout' | 'VirtualRide';
   start_date: string;
   distance: number;
   moving_time: number;

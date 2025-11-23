@@ -143,12 +143,14 @@ class StravaWorkoutQuery {
 
 			activities.forEach((activity) => {
 				const hours = activity.moving_time / 3600; // Convert seconds to hours
+				console.log(activity.type)
 				
 				switch (activity.type) {
 					case 'Swim':
 						swimHours += hours;
 						break;
 					case 'Ride':
+					case 'VirtualRide':
 						bikeHours += hours;
 						break;
 					case 'Run':
