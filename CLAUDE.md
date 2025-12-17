@@ -1,7 +1,7 @@
 # Ironman Training Tracker
 
 ## 📋 Project Overview
-A responsive web app to track a 49-week Ironman training plan with automatic Strava integration. Shows current week's planned vs actual training hours across swim, bike, and run disciplines.
+A responsive web app to track a 41-week Ironman training plan with automatic Strava integration. Shows current week's planned vs actual training hours across swim, bike, and run disciplines.
 
 ## 🏗️ Existing Setup
 - **Next.js 14+** with App Router and TypeScript

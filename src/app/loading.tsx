@@ -12,7 +12,7 @@ export default function Loading() {
               Ironman Training Tracker
             </h1>
             <p className="text-muted-foreground">
-              49-week journey to race day
+              41-week journey to race day
             </p>
           </div>
         </div>

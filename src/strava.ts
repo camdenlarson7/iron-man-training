@@ -130,46 +130,70 @@ class StravaWorkoutQuery {
 					bike: 0,
 					run: 0,
 					total: 0,
+					// distances
+					swim_meters: 0,
+					bike_meters: 0,
+					run_meters: 0,
+					total_meters: 0,
 					activities: []
 				};
 			}
 
 			const activities = await this.getActivitiesForDateRange(weekStart, weekEnd);
 
-			// Group activities by discipline and calculate hours
+			// Group activities by discipline and calculate hours + distances
 			let swimHours = 0;
 			let bikeHours = 0;
 			let runHours = 0;
 
+			let swimMeters = 0;
+			let bikeMeters = 0;
+			let runMeters = 0;
+
 			activities.forEach((activity) => {
 				const hours = activity.moving_time / 3600; // Convert seconds to hours
+				const meters = activity.distance || 0;
 				console.log(activity.type)
 				
 				switch (activity.type) {
 					case 'Swim':
 						swimHours += hours;
+						swimMeters += meters;
 						break;
 					case 'Ride':
 					case 'VirtualRide':
 						bikeHours += hours;
+						bikeMeters += meters;
 						break;
 					case 'Run':
 						runHours += hours;
+						runMeters += meters;
 						break;
 					case 'Workout':
 						if (activity.sport_type == 'Tennis') {
 							runHours += hours
+							runMeters += meters
 						}
 						break;
 				}
 			});
+
+			const totalHours = swimHours + bikeHours + runHours;
+			const totalMeters = swimMeters + bikeMeters + runMeters;
 
 			return {
 				week: weekNumber,
 				swim: Number(swimHours.toFixed(2)),
 				bike: Number(bikeHours.toFixed(2)),
 				run: Number(runHours.toFixed(2)),
-				total: Number((swimHours + bikeHours + runHours).toFixed(2)),
+				total: Number(totalHours.toFixed(2)),
+
+				// distances in meters
+				swim_meters: Math.round(swimMeters),
+				bike_meters: Math.round(bikeMeters),
+				run_meters: Math.round(runMeters),
+				total_meters: Math.round(totalMeters),
+
 				activities
 			};
 		} catch (error) {

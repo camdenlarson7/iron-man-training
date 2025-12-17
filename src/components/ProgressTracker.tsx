@@ -38,14 +38,14 @@ export function ProgressTracker({ week, stravaData, stravaError }: ProgressTrack
   const getDisciplineColor = (activityType: string, sportType?: string) => {
     if (activityType === 'Swim') return 'blue'
     if (activityType === 'Ride' || activityType === 'VirtualRide') return 'green'
-    if (activityType === 'Run' || (activityType === 'Workout' && sportType === 'Tennis')) return 'orange'
+    if (activityType === 'Run' ) return 'orange'
     return 'gray'
   }
 
   const getDisciplineIcon = (activityType: string, sportType?: string) => {
     if (activityType === 'Swim') return Waves
     if (activityType === 'Ride' || activityType === 'VirtualRide') return Bike
-    if (activityType === 'Run' || (activityType === 'Workout' && sportType === 'Tennis')) return FootprintsIcon
+    if (activityType === 'Run' ) return FootprintsIcon
     return FootprintsIcon
   }
 
@@ -70,7 +70,7 @@ export function ProgressTracker({ week, stravaData, stravaError }: ProgressTrack
   const disciplineTotals = {
     swim: activities.filter(a => a.type === 'Swim').reduce((sum, a) => sum + (a.moving_time / 3600), 0),
     bike: activities.filter(a => a.type === 'Ride' || a.type == 'VirtualRide').reduce((sum, a) => sum + (a.moving_time / 3600), 0),
-    run: activities.filter(a => a.type === 'Run' || (a.type === 'Workout' && a.sport_type === 'Tennis')).reduce((sum, a) => sum + (a.moving_time / 3600), 0)
+    run: activities.filter(a => a.type === 'Run').reduce((sum, a) => sum + (a.moving_time / 3600), 0)
   }
 
 

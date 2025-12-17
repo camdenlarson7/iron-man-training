@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import trainingPlan from "@/training-plan.json"
+import stravaClient from "@/strava"
 
 // Revalidate every 24 hours
 export const revalidate = 86400
@@ -58,11 +59,18 @@ function getPhaseColor(phaseName: string) {
   }
 }
 
-export default function PlanPage() {
+export default async function PlanPage() {
   const plan = trainingPlan as TrainingPlan
   const currentWeek = getCurrentWeek(plan.startDate)
   const currentPhase = getCurrentPhase(currentWeek, plan.phases)
-  
+
+  // Fetch Strava weekly stats for the plan weeks (server-side)
+  const weekStatsArray = await Promise.all(
+    plan.weeks.map((w) => stravaClient.getWeekProgress(w.week, plan.startDate))
+  )
+  const weekStatsMap = new Map<number, import("@/types/training").StravaWeeklyStats | null>()
+  plan.weeks.forEach((w, i) => weekStatsMap.set(w.week, weekStatsArray[i]))
+
   // Group weeks by phase
   const phaseGroups = plan.phases.map(phase => {
     const phaseWeeks = plan.weeks.filter(
@@ -86,7 +94,7 @@ export default function PlanPage() {
           </div>
           <div className="text-center space-y-2">
             <h1 className="text-3xl font-bold tracking-tight">
-              49-Week Ironman Training Plan
+              41-Week Ironman Training Plan
             </h1>
             <p className="text-muted-foreground">
               Complete training schedule from base building to race day
@@ -168,7 +176,14 @@ export default function PlanPage() {
                   {group.weeks.map((week) => {
                     const isCurrent = week.week === currentWeek
                     const isPast = week.week < currentWeek
-                    
+
+                    // Get actuals from Strava if available
+                    const stats = weekStatsMap.get(week.week) ?? null
+                    const swimCompleted = stats?.swim ?? 0
+                    const bikeCompleted = stats?.bike ?? 0
+                    const runCompleted = stats?.run ?? 0
+                    const totalCompleted = stats?.total ?? 0
+
                     return (
                       <Link key={week.week} href={`/?week=${week.week}`}>
                         <Card className={`p-4 transition-all hover:shadow-md cursor-pointer ${
@@ -202,19 +217,19 @@ export default function PlanPage() {
                             <div className="space-y-2 text-sm">
                               <div className="flex justify-between">
                                 <span className="text-blue-600">Swim:</span>
-                                <span className="font-medium">{formatDuration(week.swim)}</span>
+                                <span className="font-medium">{formatDuration(swimCompleted)} / {formatDuration(week.swim)}</span>
                               </div>
                               <div className="flex justify-between">
                                 <span className="text-green-600">Bike:</span>
-                                <span className="font-medium">{formatDuration(week.bike)}</span>
+                                <span className="font-medium">{formatDuration(bikeCompleted)} / {formatDuration(week.bike)}</span>
                               </div>
                               <div className="flex justify-between">
                                 <span className="text-orange-600">Run:</span>
-                                <span className="font-medium">{formatDuration(week.run)}</span>
+                                <span className="font-medium">{formatDuration(runCompleted)} / {formatDuration(week.run)}</span>
                               </div>
                               <div className="border-t pt-2 flex justify-between font-semibold">
                                 <span>Total:</span>
-                                <span>{formatDuration(week.total)}</span>
+                                <span>{formatDuration(totalCompleted)} / {formatDuration(week.total)}</span>
                               </div>
                             </div>
                           </div>

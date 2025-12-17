@@ -25,6 +25,21 @@ export function WeekDisplay({ week, phases, startDate, stravaData, stravaError }
   const completed = stravaData || { swim: 0, bike: 0, run: 0, total: 0 }
   const progress = calculateWeekProgress(week, completed)
 
+  // Weekly distances (from StravaWeeklyStats, meters)
+  const swimMeters = stravaData?.swim_meters ?? 0
+  const bikeMeters = stravaData?.bike_meters ?? 0
+  const runMeters = stravaData?.run_meters ?? 0
+
+  const metersToMiles = (meters: number) => meters * 0.000621371
+  const formatDistanceMiles = (meters: number) => {
+    const miles = metersToMiles(meters)
+    return miles >= 0.1 ? `${miles.toFixed(1)}mi` : `${Math.round(miles * 5280)}ft`
+  }
+  const formatDistanceMeters = (meters: number) => {
+    if (!meters) return '0 m'
+    return `${Math.round(meters)} m`
+  }
+
   const disciplines = [
     {
       name: 'Swim',
@@ -32,7 +47,8 @@ export function WeekDisplay({ week, phases, startDate, stravaData, stravaError }
       icon: Waves,
       planned: week.swim,
       completed: completed.swim,
-      color: 'blue'
+      color: 'blue',
+      distanceDisplay: formatDistanceMeters(swimMeters)
     },
     {
       name: 'Bike', 
@@ -40,15 +56,17 @@ export function WeekDisplay({ week, phases, startDate, stravaData, stravaError }
       icon: Bike,
       planned: week.bike,
       completed: completed.bike,
-      color: 'green'
+      color: 'green',
+      distanceDisplay: formatDistanceMiles(bikeMeters)
     },
     {
-      name: 'Run (or Tennis)',
+      name: 'Run',
       key: 'run' as const, 
       icon: FootprintsIcon,
       planned: week.run,
       completed: completed.run,
-      color: 'orange'
+      color: 'orange',
+      distanceDisplay: formatDistanceMiles(runMeters)
     }
   ]
 
@@ -136,6 +154,10 @@ export function WeekDisplay({ week, phases, startDate, stravaData, stravaError }
                 <div className="font-medium text-sm">{discipline.name}</div>
                 <div className="text-xs text-muted-foreground">
                   {formatDuration(discipline.completed)} / {formatDuration(discipline.planned)}
+                </div>
+                {/* Distance line */}
+                <div className="text-xs text-muted-foreground">
+                  {discipline.distanceDisplay}
                 </div>
                 {discipline.planned > 0 && discipline.completed !== discipline.planned && (
                   <div className={`text-xs ${discipline.completed > discipline.planned ? 'text-orange-600' : 'text-green-600'}`}>

@@ -87,5 +87,12 @@ export interface StravaWeeklyStats {
   bike: number; // hours  
   run: number; // hours
   total: number; // hours
+
+  // Distances from Strava activities (meters)
+  swim_meters?: number;
+  bike_meters?: number;
+  run_meters?: number;
+  total_meters?: number;
+
   activities: StravaActivity[];
 }

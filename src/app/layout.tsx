@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ironman Training Tracker",
-  description: "Track your 49-week Ironman training journey with detailed progress monitoring",
+  description: "Track your 41-week Ironman training journey with detailed progress monitoring",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Ironman Training Tracker",
     title: "Ironman Training Tracker",
-    description: "Track your 49-week Ironman training journey",
+    description: "Track your 41-week Ironman training journey",
   },
 };
 
