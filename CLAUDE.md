@@ -15,9 +15,9 @@ A responsive web app to track a 41-week Ironman training plan with automatic Str
 
 **Install if needed:**
 ```bash
-npx shadcn-ui@latest add progress
-npx shadcn-ui@latest add badge  
-npx shadcn-ui@latest add skeleton
+npx shadcn@latest add progress
+npx shadcn@latest add badge  
+npx shadcn@latest add skeleton
 ```
 
 ## 🎯 Core Features
